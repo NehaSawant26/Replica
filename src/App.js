@@ -1,25 +1,49 @@
-import logo from './logo.svg';
-import './App.css';
+import About from "./Components/About";
+import Body from "./Components/Body";
+import Footer from "./Components/Footer";
+import Header from "./Components/Header";
+import Mortgage from "./Components/Mortgage";
+import Start from "./Components/Start";
+import {createBrowserRouter, Outlet} from "react-router-dom"
 
 function App() {
+ 
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+      <Outlet />
+      <Footer />
     </div>
   );
-}
+};
+
+export const appRouter = createBrowserRouter([
+  {
+    path : "/",
+    element : <App />,
+    children : [
+      {
+        path : "/",
+        element : <Body />
+     },
+      {
+        path : "/about",
+        element : <About />
+     },
+     {
+      path : "/start",
+      element : <Start />
+   },
+   {
+    path : "/mortgage",
+    element : <Mortgage />
+ }
+    ]
+
+ },
+  
+])
+
+
 
 export default App;
